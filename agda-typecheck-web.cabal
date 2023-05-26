@@ -25,14 +25,19 @@ source-repository head
 
 library
   exposed-modules:
+      Compilation
       Lib
+      Types
   other-modules:
       Paths_agda_typecheck_web
   hs-source-dirs:
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , scotty
+    , text
   default-language: Haskell2010
 
 executable agda-typecheck-web-exe
@@ -43,8 +48,11 @@ executable agda-typecheck-web-exe
       app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      agda-typecheck-web
+      aeson
+    , agda-typecheck-web
     , base >=4.7 && <5
+    , scotty
+    , text
   default-language: Haskell2010
 
 test-suite agda-typecheck-web-test
@@ -56,6 +64,9 @@ test-suite agda-typecheck-web-test
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      agda-typecheck-web
+      aeson
+    , agda-typecheck-web
     , base >=4.7 && <5
+    , scotty
+    , text
   default-language: Haskell2010
