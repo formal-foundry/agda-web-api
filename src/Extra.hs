@@ -7,8 +7,21 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveAnyClass #-}
 
-
-module Compilation  where
+module Extra where
 
 import Types
 
+import Web.Scotty
+import qualified Network.Wai.Parse as NWP
+
+import Data.Text as T
+import Data.Text.Lazy as TL
+
+
+import qualified Data.ByteString.Lazy.Internal as BL
+import qualified Data.ByteString.Char8 as BC
+
+checkFiles :: [File] -> CheckRes
+checkFiles fl = case Prelude.length fl of
+  _ -> Err "de"
+  
