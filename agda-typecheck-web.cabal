@@ -37,6 +37,7 @@ library
       aeson
     , base >=4.7 && <5
     , bytestring
+    , http-types
     , neat-interpolation
     , scotty
     , text
@@ -57,6 +58,7 @@ executable agda-typecheck-web-exe
     , agda-typecheck-web
     , base >=4.7 && <5
     , bytestring
+    , http-types
     , neat-interpolation
     , scotty
     , text
@@ -78,6 +80,7 @@ test-suite agda-typecheck-web-test
     , agda-typecheck-web
     , base >=4.7 && <5
     , bytestring
+    , http-types
     , neat-interpolation
     , scotty
     , text

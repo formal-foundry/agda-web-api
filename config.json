@@ -1,0 +1,7 @@
+{
+  "port": 3030,
+  "tlsOn": false,
+  "tlsKey": "",
+  "tlsCert": "",
+  "agdaExec": ""
+}

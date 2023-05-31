@@ -14,6 +14,11 @@ import GHC.Generics
 import Data.Aeson
 import Data.Aeson.Text
 
+
+import Data.Text as T
+import Data.Text.Lazy as TL
+
+
 data AgaType = AgaType
                 { problem :: String
                 , meta :: MetaD
@@ -33,4 +38,14 @@ data CompilerRes = CompilerRes { status :: Int
 
 
 data CheckRes = Ok AgaType | Err String
+
+
+data ATCEnv =
+  ATCEnv 
+  { port :: Int
+  , tlsOn :: Bool
+  , tlsKey :: String
+  , tlsCert :: String
+  , agdaExec :: FilePath
+  } deriving (Show , Generic, ToJSON, FromJSON )
 

@@ -26,9 +26,10 @@ dependencies:
 - aeson
 - neat-interpolation
 - bytestring
-- wai 
+- wai
 - wai-extra
 - wai-middleware-static
+- http-types
 
 ghc-options:
 - -Wall

@@ -20,28 +20,34 @@ import Control.Monad.IO.Class (liftIO)
 import Data.Text as T
 import Data.Text.Lazy as TL
 
+import Network.HTTP.Types.Status
 
 import Web.Scotty
 import qualified Network.Wai.Parse as NWP
 
 
+mainAPI :: ATCEnv -> IO ()
+mainAPI env =do
+  putStrLn "ce"
+  scotty (port env) $ do
+
+    get "/" $  text  $ TL.fromStrict info
+
+
+    post "/agda" $ do
+      incoming  <- files
+      rcf <- liftIO $ checkAndPrepareFiles incoming env
+      case rcf of
+        Ok x ->  text $ "response here"
+        Err x ->  raiseStatus status400 $ TL.pack x
+
+
 main :: IO ()
-main = scotty 3000 $ do
-
- post "/compile/agda" $ do
-   incoming  <- files
-   let rcf = checkFiles incoming
-   case rcf of
-     Ok x ->  text $ "response here"
-     Err x -> html $ "response here"
-
-
-
- get "/" $  text  $ TL.fromStrict info
+main = loadConfigAndRun mainAPI
 
 
 info :: T.Text
 info =  [NI.text|
 EXAMPLE OF USAGE
-Multilien text
+text 
 or HTML |]
