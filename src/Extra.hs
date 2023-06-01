@@ -33,9 +33,16 @@ checkAndPrepareFiles fl env = do
              False -> return $ Err $ "I expect files named: Problem.agda and Problem.json." ++ "\n\n You send: " ++ (show (map (\(n,c)-> n) nLists))
              True -> do
                let (agdaC, jsonC) = if (fst (Prelude.head nLists)) == "Problem.agda"
-                     then ((snd (Prelude.head nLists),(snd (Prelude.head nLists))
-                     else ((snd (Prelude.last nLists),(snd (Prelude.head nLists))
-               return $ Err $ show $ snd $ Prelude.head nLists
+                     then (( snd(Prelude.head nLists)),(snd (Prelude.last nLists)))
+                     else (( snd(Prelude.last nLists)),( snd(Prelude.head nLists)))
+                   filePath = (agdaExec env) ++ "Problem.agda"
+                   metad = decode jsonC :: Maybe MetaD
+               BS.writeFile filePath (BC.toStrict agdaC)
+               case metad of
+                 Nothing -> return $ Err "c"
+                 Just m -> return $  Ok AgaType { problem = filePath
+                                                , meta = m
+                                                }
 
     _ -> return $ Err "Invalid list of attachments, expecting 2: Problem.agda and Problem.json."
 

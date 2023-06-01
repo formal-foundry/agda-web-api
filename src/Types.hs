@@ -20,7 +20,7 @@ import Data.Text.Lazy as TL
 
 
 data AgaType = AgaType
-                { problem :: String
+                { problem :: FilePath
                 , meta :: MetaD
                 }  deriving (Show , Generic, ToJSON, FromJSON )
 

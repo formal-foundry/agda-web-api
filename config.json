@@ -3,5 +3,5 @@
   "tlsOn": false,
   "tlsKey": "",
   "tlsCert": "",
-  "agdaExec": ""
+  "agdaExec": "/home/kryn/testAgda/"
 }
