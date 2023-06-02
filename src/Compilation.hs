@@ -10,31 +10,37 @@
 
 module Compilation  where
 
+import System.Process as SP
+-- nnimport System.Console.ANSI
+import System.Exit
+import System.FilePath (splitFileName)
+import System.Directory
+import System.Environment (getEnv)
+
 import Types
 
 compile :: AgaType -> IO CompilerRes
 compile at = undefined
 
 
--- tryToCompile :: String -> IO (Maybe String)
--- tryToCompile fp = do
---   let (path, file) =  splitFileName fp
---   aReq <- runProcess_ path file
---   p  <- getEnv "PWD"
---   case aReq of
---     Nothing -> return Nothing
---     Just re -> do
---                 return $ Just $ replaceStringLoop (p++"/") "" re
-      
--- runProcess_ ::  FilePath -> String -> IO (Maybe String)
--- runProcess_ pwd afile = do
---   let cp = shell $ "agda" ++ " " ++ afile
---       ncp = cp { cwd = Just pwd
---                , std_out = CreatePipe
---                , std_err = CreatePipe
---                }            
---   (code, output, errorOutput) <- readCreateProcessWithExitCode ncp ""
---   let result = case code of
---                   ExitSuccess   -> Nothing
---                   ExitFailure _ -> Just output
---   return result
+tryToCompile ::  AgaType-> IO CompilerRes
+tryToCompile at = do
+  let fp = problem at
+      (path, file) =  splitFileName fp
+  aReq <- runProcess_ path file
+  return $ CompilerRes { status = (fst aReq)
+                       , output = (snd aReq) }
+
+ 
+runProcess_ ::  FilePath -> String -> IO (Int, String)
+runProcess_ pwd afile = do
+  let cp = shell $ "agda" ++ " " ++ afile
+      ncp = cp { cwd = Just pwd
+               , std_out = CreatePipe
+               , std_err = CreatePipe
+               }
+  (code, output, errorOutput) <- readCreateProcessWithExitCode ncp ""
+  let result = case code of
+                  ExitSuccess   -> (0, "Ok")
+                  ExitFailure c -> (c,output) 
+  return result

@@ -37,8 +37,11 @@ library
       aeson
     , base >=4.7 && <5
     , bytestring
+    , directory >=1.3.6.2
+    , filepath >=1.4.2.2
     , http-types
     , neat-interpolation
+    , process >=1.6.16.0
     , scotty
     , text
     , wai
@@ -58,8 +61,11 @@ executable agda-typecheck-web-exe
     , agda-typecheck-web
     , base >=4.7 && <5
     , bytestring
+    , directory >=1.3.6.2
+    , filepath >=1.4.2.2
     , http-types
     , neat-interpolation
+    , process >=1.6.16.0
     , scotty
     , text
     , wai
@@ -80,8 +86,11 @@ test-suite agda-typecheck-web-test
     , agda-typecheck-web
     , base >=4.7 && <5
     , bytestring
+    , directory >=1.3.6.2
+    , filepath >=1.4.2.2
     , http-types
     , neat-interpolation
+    , process >=1.6.16.0
     , scotty
     , text
     , wai

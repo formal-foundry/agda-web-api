@@ -33,7 +33,7 @@ data MetaD = MetaD { agdaVersion :: String
 
 
 data CompilerRes = CompilerRes { status :: Int
-                               , err :: String
+                               , output :: String
                                } deriving (Show , Generic, ToJSON, FromJSON )
 
 

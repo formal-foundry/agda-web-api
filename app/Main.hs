@@ -40,7 +40,7 @@ mainAPI env =do
       rcf <- liftIO $ checkAndPrepareFiles incoming env
       case rcf of
         Ok x ->  do
-                   c <- liftIO $ compile x
+                   c <- liftIO $ tryToCompile x
                    json c
         Err x ->  raiseStatus status400 $ TL.pack x
 
