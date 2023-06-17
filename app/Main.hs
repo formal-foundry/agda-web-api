@@ -29,7 +29,6 @@ import qualified Network.Wai.Parse as NWP
 
 mainAPI :: ATCEnv -> IO ()
 mainAPI env =do
-  putStrLn "ce"
   scotty (port env) $ do
 
     get "/" $  text  $ TL.fromStrict info
