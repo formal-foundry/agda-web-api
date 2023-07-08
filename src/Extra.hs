@@ -17,6 +17,9 @@ import qualified Network.Wai.Parse as NWP
 import qualified Data.Text as T
 import qualified Data.Text.Lazy as TL
 
+import System.Random
+import Data.List (genericReplicate)
+
 import System.Environment
 import Data.Aeson
 
@@ -32,10 +35,11 @@ checkAndPrepareFiles fl env = do
            case containsElements ["Problem.agda", "Problem.json"] (map (\(n,c)-> n) nLists) of
              False -> return $ Err $ "I expect files named: Problem.agda and Problem.json." ++ "\n\n You send: " ++ (show (map (\(n,c)-> n) nLists))
              True -> do
+               rString <- randomString 
                let (agdaC, jsonC) = if (fst (Prelude.head nLists)) == "Problem.agda"
                      then (( snd(Prelude.head nLists)),(snd (Prelude.last nLists)))
-                     else (( snd(Prelude.last nLists)),( snd(Prelude.head nLists)))
-                   filePath = (agdaExec env) ++ "Problem.agda"
+                     else (( snd(Prelude.last nLists)),( snd(Prelude.head nLists))) 
+                   filePath = (agdaExec env) ++ "Problem" ++ rString ++  ".agda"
                    metad = decode jsonC :: Maybe MetaD
                BS.writeFile filePath (BC.toStrict agdaC)
                case metad of
@@ -65,3 +69,10 @@ loadConfigAndRun mainAPI =
 
 containsElements :: Eq a => [a] -> [a] -> Bool
 containsElements xs ys = all (\x -> elem x ys) xs
+
+randomString :: IO String
+randomString = do
+  gen <- newStdGen
+  let chars = ['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9']
+      randomChars = take 4 $ randomRs ('a', 'z') gen -- Modify this line to change the range of characters
+  return randomChars
