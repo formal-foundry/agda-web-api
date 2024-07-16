@@ -1,4 +1,4 @@
-name:                agda-typecheck-web
+name:                agda-web-api
 version:             0.1.0.0
 github:              "githubuser/agda-typecheck-web"
 license:             BSD3
@@ -50,7 +50,7 @@ library:
   source-dirs: src
 
 executables:
-  agda-typecheck-web-exe:
+  agda-web-api:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -58,10 +58,10 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - agda-typecheck-web
+    - agda-web-api
 
 tests:
-  agda-typecheck-web-test:
+  agda-web-api-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -69,4 +69,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - agda-typecheck-web
+    - agda-web-api

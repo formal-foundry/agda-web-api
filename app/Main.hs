@@ -33,6 +33,7 @@ mainAPI env =do
 
     get "/" $  text  $ TL.fromStrict info
 
+    get "/hello" $ text "hello"
 
     post "/agda" $ do
       incoming  <- files
