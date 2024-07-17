@@ -16,7 +16,7 @@ After installing Agda, create a directory to store your project files. This dire
 
 4. Configuring the Application
 
-Now, it's time to configure the application. Edit the configuration file located in the repository. We recommend leaving most configurations unchanged, except for the working directory path ("agdaExec"). Follow these steps:
+Now, it's time to configure the application. Edit the configuration file located in the repository (/data). We recommend leaving most configurations unchanged, except for the working directory path ("agdaExec"). Follow these steps:
 
 
 5. Building the Project
@@ -35,7 +35,10 @@ bash
 * stack run config.json *
 Replace config.json with the name of your edited configuration file.
 
+API endpoints:
+ get  / 
+ push /agda {Two files are expected in the body (Problem.agda, Problem.json). A structured example can be found in /data. }
+  
 
-
-In case of any questions or doubts, please write to krystian.nieradko@gmail.com.
+In case of any questions or doubts, please write to info@formalfoundry.ai
 
