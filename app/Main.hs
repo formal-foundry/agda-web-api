@@ -33,8 +33,6 @@ mainAPI env =do
 
     get "/" $  text  $ TL.fromStrict info
 
-    get "/hello" $ text "hello"
-
     post "/agda" $ do
       incoming  <- files
       rcf <- liftIO $ checkAndPrepareFiles incoming env
@@ -51,9 +49,7 @@ main = loadConfigAndRun mainAPI
 
 info :: T.Text
 info =  [NI.text|
-EXAMPLE OF USAGE
-text 
-or HTML |]
+post /agda {Two files are expected in the body (Problem.agda, Problem.json). A structured example can be found in /data. } |]
 
 
 -- tryToCompile :: String -> IO (Maybe String)
