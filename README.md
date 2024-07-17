@@ -36,8 +36,8 @@ bash
 Replace config.json with the name of your edited configuration file.
 
 API endpoints:
- get  / 
- push /agda {Two files are expected in the body (Problem.agda, Problem.json). A structured example can be found in /data. }
+ * get  / 
+ * push /agda {Two files are expected in the body (Problem.agda, Problem.json). A structured example can be found in /data. }
   
 
 In case of any questions or doubts, please write to info@formalfoundry.ai
